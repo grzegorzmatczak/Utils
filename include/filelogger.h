@@ -9,7 +9,6 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 
-
 #include "includespdlog.h"
 
 

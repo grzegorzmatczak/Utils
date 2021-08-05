@@ -10,6 +10,7 @@ class ListVector
 	public:
 		ListVector();
 		ListVector(int size);
+
 	public:	
 		bool isActive(int id);
 		int addItem(T data);

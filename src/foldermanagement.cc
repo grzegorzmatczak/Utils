@@ -3,7 +3,4 @@
 #define DEBUG
 
 
-FolderManagement::FolderManagement()
-{
-
-}
+FolderManagement::FolderManagement(){}
