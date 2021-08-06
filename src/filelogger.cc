@@ -7,7 +7,7 @@ FileLogger::FileLogger()
 	m_file = new QFile("temp.json");
 }
 
-void FileLogger::configure(QString name, bool additionalLogs)
+void FileLogger::onConfigure(QString name)
 {
 	#ifdef DEBUG
 	Logger->debug("FileLogger::configure() ");
@@ -25,16 +25,16 @@ void FileLogger::configure(QString name, bool additionalLogs)
 	#endif
 }
 
-void FileLogger::appendFileLogger(QStringList list)
+void FileLogger::onAppendFileLogger(QStringList list)
 {
 	#ifdef DEBUG
 	Logger->debug("FileLogger::appendFileLogger() ");
 	#endif
-	append(list, m_file);
+	FileLogger::onAppend(list, m_file);
 }
 
 
-void FileLogger::append(QStringList list, QFile* file)
+void FileLogger::onAppend(QStringList list, QFile* file)
 {
 	#ifdef DEBUG
 	Logger->debug("FileLogger::Append() clean:");
@@ -53,7 +53,7 @@ void FileLogger::append(QStringList list, QFile* file)
 	#endif
 }
 
-void FileLogger::clear()
+void FileLogger::onClear()
 {
 	Logger->error("FileLogger::clear()");
 	m_file->remove();
@@ -63,7 +63,7 @@ void FileLogger::clear()
 	}
 }
 
-void FileLogger::logJsonBest(QJsonObject json)
+void FileLogger::onLogJsonBest(QJsonObject json)
 {
 	#ifdef DEBUG
 	qDebug() << "FileLogger::logJsonBest:" << json;

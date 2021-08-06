@@ -20,18 +20,16 @@ class FileLogger : public QObject {
 	signals:
 
 	public slots:
-		void configure(QString name, bool additionalLogs);
-		void appendFileLogger(QStringList list);
+		void onConfigure(QString name);
+		void onAppendFileLogger(QStringList list);
 
-		void append(QStringList list, QFile* file);
-		void clear();
-		void logJsonBest(QJsonObject json);
+		void onAppend(QStringList list, QFile* file);
+		void onClear();
+		void onLogJsonBest(QJsonObject json);
 
 	private:
 		QString m_name;
 		QFile* m_file;
-		QFile* m_fileAdditional;
-		bool m_additionalLogs;
 };
 
 #endif // FILELOGGER_H
