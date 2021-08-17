@@ -7,7 +7,7 @@
 #include "includespdlog.h"
 
 
-static bool checkAndCreateFolder(QString name)
+static bool createFolder(QString name)
 {
 	#ifdef DEBUG
 	Logger->debug("FolderManagement::checkAndCreateFolder({})",name.toStdString());
@@ -21,6 +21,14 @@ static bool checkAndCreateFolder(QString name)
 		}
 	}
 	return false;
+}
+
+static void checkAndCreateFolder(QString name)
+{
+	if(createFolder(name))
+	{
+		Logger->error("createFolder can not create:{}", name.toStdString());
+	}
 }
 
 class FolderManagement : public QObject {
