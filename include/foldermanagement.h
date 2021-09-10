@@ -29,6 +29,9 @@ static void checkAndCreateFolder(QString name)
 	{
 		Logger->error("createFolder can not create:{}", name.toStdString());
 	}
+	#ifdef DEBUG
+	Logger->debug("createFolder:({})",name.toStdString());
+	#endif
 }
 
 class FolderManagement : public QObject {
