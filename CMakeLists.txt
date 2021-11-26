@@ -24,11 +24,11 @@ set(SRC
     src/listvector.cc)
 
 set(HEADERS
-    include/configreader.cc
-    include/filelogger.cc
-    include/foldermanagement.cc
-    include/includespdlog.cc
-    include/listvector.cc)
+    include/configreader.h
+    include/filelogger.h
+    include/foldermanagement.h
+    include/includespdlog.h
+    include/listvector.h)
 
 add_executable(${TARGET_NAME}
     ${SRC}
