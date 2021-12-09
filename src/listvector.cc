@@ -1,47 +1,49 @@
 #include "listvector.h"
 
+//#define DEBUG
 
 template<typename T>
 ListVector<T>::ListVector()
 {
-  Logger->trace("ListVector::ListVector()");
-  m_size = 20;
-  T _t;
-  for (int i = 0; i < m_size; i++)
-  {
-	m_vect.push_back(_t);
-	m_active.push_back(false);
-  }
+	#ifdef DEBUG
+	Logger->debug("ListVector::ListVector()");
+	#endif
+	m_size = 20;
+	T _t;
+	for (int i = 0; i < m_size; i++)
+	{
+		m_vect.push_back(_t);
+		m_active.push_back(false);
+	}
 
-  Logger->trace("size m_vect:{}", m_vect.size());
 }
 
 template<typename T>
 ListVector<T>::ListVector(int size)
 {
-  Logger->trace("ListVector::ListVector()");
-  m_size = size;
-  T _t;
-  for (int i = 0; i < size; i++)
-  {
-	m_vect.push_back(_t);
-	m_active.push_back(false);
-  }
-
-  Logger->trace("size m_vect:{}", m_vect.size());
+	#ifdef DEBUG
+	Logger->debug("ListVector::ListVector()");
+	#endif
+	m_size = size;
+	T _t;
+	for (int i = 0; i < size; i++)
+	{
+		m_vect.push_back(_t);
+		m_active.push_back(false);
+	}
 }
 
 template<typename T>
 bool ListVector<T>::isActive(int id)
 {
-  if (m_active[id])
-  {
-	return true;
-  }
-  else
-  {
-	return false;
-  }
+	if (m_active[id])
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 template<typename T>
@@ -54,7 +56,9 @@ int ListVector<T>::addItem(T data)
 	{
 		m_active[i] = true;
 		m_vect[i] = data;
-		Logger->trace("ListVector<T>::addItem() success");
+		#ifdef DEBUG
+		Logger->debug("ListVector<T>::addItem() success");
+		#endif
 		return i;
 	}
   }	
@@ -73,7 +77,9 @@ bool ListVector<T>::addItem(int id, T data)
 	if (m_active[id])
 	{
 		m_vect[id] = data;
-		Logger->trace("ListVector<T>::addItem() success");
+		#ifdef DEBUG
+		Logger->debug("ListVector<T>::addItem() success");
+		#endif
 		return true;
 	}
 	Logger->warn("ListVector<T>::addItem() failed");
@@ -83,7 +89,9 @@ bool ListVector<T>::addItem(int id, T data)
 template<typename T>
 T& ListVector<T>::operator[] (int index)
 {
-	Logger->trace("ListVector<T>::operator[] index:{}", index);
+	#ifdef DEBUG
+	Logger->debug("ListVector<T>::operator[] index:{}", index);
+	#endif
 	if(index < m_size && index >= 0 && m_active[index])
 	{
 		return m_vect.at(index);
@@ -100,7 +108,9 @@ int ListVector<T>::leaseItem()
 		if (!m_active[i])
 		{
 			m_active[i] = true;
-			Logger->trace("ListVector<T>::leaseItem() lease {} id", i);
+			#ifdef DEBUG
+			Logger->debug("ListVector<T>::leaseItem() lease {} id", i);
+			#endif
 			return i;
 		}
 	}
