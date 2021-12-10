@@ -22,11 +22,38 @@ QVector<QString> static scanAllImages(QString path)
     return temp;
 }
 
+QVector<QString> static scanAllJson(QString path)
+{
+    QVector<QString> temp;
+    QDir directory(path);
+    QStringList images = directory.entryList(QStringList() << "*.json", QDir::Files);
+
+    foreach(QString filename, images)
+    {
+        temp.push_back(filename);
+    }
+    return temp;
+}
+
 QVector<QString> static scanAllImagesNames(QString path)
 {
     QVector<QString> temp;
     QDir directory(path);
     QStringList images = directory.entryList(QStringList() << "*.jpg" << "*.png" << "*.PNG" << "*.JPG", QDir::Files);
+
+    foreach(QString filename, images)
+    {
+        QStringList sl = filename.split(".");
+        temp.push_back(sl[0]);
+    }
+    return temp;
+}
+
+QVector<QString> static scanAllJsonNames(QString path)
+{
+    QVector<QString> temp;
+    QDir directory(path);
+    QStringList images = directory.entryList(QStringList() << "*.json", QDir::Files);
 
     foreach(QString filename, images)
     {
