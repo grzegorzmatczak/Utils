@@ -35,6 +35,36 @@ QVector<QString> static scanAllJson(QString path)
     return temp;
 }
 
+QVector<QString> static scanAllDnn(QString path)
+{
+    QVector<QString> temp;
+    QDir directory(path);
+    QStringList images = directory.entryList(QStringList() << "*.dnn", QDir::Files);
+
+    foreach(QString filename, images)
+    {
+        temp.push_back(filename);
+    }
+    return temp;
+}
+
+QString static returnLastEditedDnn(QString path)
+{
+    QVector<QString> temp;
+    QDir directory(path);
+    QStringList images = directory.entryList(QStringList() << "*.dnn", QDir::Files, QDir::Time);
+
+    foreach(QString filename, images)
+    {
+        temp.push_back(filename);
+    }
+    if(temp.size()>0)
+    {
+        return temp[0];
+    }
+    return "";
+}
+
 QVector<QString> static scanAllImagesNames(QString path)
 {
     QVector<QString> temp;
